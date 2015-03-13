@@ -18,6 +18,8 @@ https://www.youtube.com/watch?v=_ZG_CrYyh_Q<br>
 https://www.youtube.com/watch?v=Z7yS28I5ci4<br>
 https://www.youtube.com/watch?v=nPnF4pZ8zOA<br>
 https://www.airpair.com/angularjs/posts/preparing-for-the-future-of-angularjs<br>
+http://www.2ality.com/2013/08/es6-callables.html<br>
+http://odetocode.com/videos (cool !!)<br>
 
 ### Javascript
 http://christianheilmann.com/2015/02/15/flipboard-and-the-mobile-web-dream/<br>
