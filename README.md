@@ -5,6 +5,7 @@ Liste de ressources et tableau de bord pour le lunch &amp; learn sur EcmaScript 
 ### EcmaScript6
 http://www.2ality.com/2015/02/using-es6-today-minsk.html<br>
 http://es6-features.org/?utm_source=javascriptweekly&utm_medium=email#SymbolExportImport (très bien pour les exemples)<br>
+http://tagtree.tv/courses/expert-es6 (Cours)<br>
 http://www.2ality.com/2015/02/es6-classes-final.html<br>
 http://fr.slideshare.net/x00mario/es6-en<br>
 http://kangax.github.io/compat-table/es6/<br>
