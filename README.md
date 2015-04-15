@@ -30,3 +30,21 @@ https://medium.com/@ilyothehorrid/writing-code-for-humans-5b80a89f439c<br>
 https://medium.com/@iojs/io-js-and-a-node-js-foundation-4e14699fb7be<br>
 
 ### JS Server side
+
+
+NodeJs -> coding in ES6 –-v8-options
+
+Argument function structure :
+Var m = function({age : s}){};
+
+Cf. 
+Module loader ;
+Compilation on the fly sur le load de modules externes ;
+
+Iterators et generators
+
+Generator replace callbacks 
+
+KOA framework cf. => using generator to flush callbacks
+
+Module loader / es6-module-loader
