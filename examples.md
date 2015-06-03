@@ -195,3 +195,11 @@ var t = 'poodle'
   , w = [...t];
 console.log(w.split(',')); //-> p,o,o,d,l,e 
 ```
+### Template string 
+let t = `Text in template`;
+console.log(t); //-> Text in template
+let t = `Text in template
+With two lines`;
+let a = 5;
+let t = `My text with the a variable ${a}`;
+
