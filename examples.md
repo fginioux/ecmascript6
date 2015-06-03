@@ -1,5 +1,5 @@
 #Examples
-=======
+List of ECMAScript 6 implementation
 
 ### Constant
 ```javascript
