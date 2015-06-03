@@ -202,6 +202,10 @@ console.log(t); //-> Text in template
 let t = `Text in template
 With two lines`;
 let a = 5;
+let b = 10;
 let t = `My text with the a variable ${a}`;
+let v = `My text with a statement a+b == ${a + b}`;
+console.log(t); //-> My text with the a variable 5
+console.log(v); //-> My text with a statement a+b == 15
 ```
 
