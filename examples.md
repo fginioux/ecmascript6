@@ -260,3 +260,33 @@ function f({x = 0, y = 0} = {}, n){
 var {x: a, y: b} = f({x: 2}, 5);
 console.log(a, b); //-> 10, 0
 ```
+### Promise Object
+```javascript
+function get(url = 'http://www.google.ca'){
+    return new Promise(function(resolve, reject){
+    	$.ajax({
+    	    url: url,
+    	    complete: function(data){
+    	    	resolve(data);
+    	    },
+    	    error: function(err){
+    	    	reject(err);
+    	    }
+    	});
+    });
+}
+
+// First syntax
+get().then(function(data){
+    //-> Success
+}).catch(function(err){
+    //-> Error
+});
+
+// Second syntax
+get('http://dogtime.com/dog-breeds/poodle').then(function(html){
+    //-> Success
+}, function(err){
+    //-> Error
+});
+```
