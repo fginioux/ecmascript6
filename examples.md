@@ -208,4 +208,55 @@ let v = `My text with a statement a+b == ${a + b}`;
 console.log(t); //-> My text with the a variable 5
 console.log(v); //-> My text with a statement a+b == 15
 ```
+### Destructuring assigment (Array)
+```javascript
+// Basic
+var a, b;
+[a, b] = [3, 4];
+console.log('Valeur de a == ${a} - Valeur de b == ${b}.'); //-> Valeur de a == 3 - Valeur de b == 4
 
+// With string value and non-declaration ("var" before assignment statement)
+var [a, b] = ["String A", "String B"];
+console.log('${a} - ${b}.'); //-> String A - String B
+
+// Crossed assignment
+var a = 1, b = 2;
+[a, b] = [b, a];
+console.log('Valeur de a == ${a} - Valeur de b == ${b}.'); //-> Valeur de a == 2 - Valeur de b == 1
+
+// Ignoring values
+var a, b, c;
+[a, b, , c] = [1, 2, 3, 4];
+console.log(a, b, c); //-> 1, 2, 4
+// Using function
+function f(n){
+    return [1, 2, 3].map((v) => v + n);
+};
+
+var [a, b, c] = f(1);
+console.log(a, b, c); //-> 2, 3, 4
+a = f(2);
+console.log(a.joint(', ')); //-> 4, 5, 6
+```
+### Destructuring assigment (Object)
+```javascript
+// Basic 
+var {a, b} = {a: 3, b: 4};
+console.log('Valeur de a == ${a} - Valeur de b == ${b}.'); //-> Valeur de a == 3 - Valeur de b == 4
+
+// Unmatch variable name
+var {p: a, q: b} = {p: 3, q: 4};
+console.log('Valeur de a == ${a} - Valeur de b == ${b}.'); //-> Valeur de a == 3 - Valeur de b == 4
+
+// Without var keyword before assignment statement
+var a, b;
+({a, b} = {a: 3, b: 4});
+
+// Function declaration with destructuring assignment
+function f({x = 0, y = 0} = {}, n){
+    return {x: x*n, y: y*n};
+};
+
+var {x: a, y: b} = f({x: 2}, 5);
+console.log(a, b); //-> 10, 0
+```
