@@ -296,6 +296,7 @@ get('http://dogtime.com/dog-breeds/poodle').then(function(html){
 let a = 1, b = 2;
 let obj = {a, b};
 console.log(obj.a); //-> 1
+
 //-> methods
 let obj = {
     a: 1,
@@ -305,6 +306,7 @@ let obj = {
     c: "poodle"
 };
 obj.b() //-> a == 1, c == poodle
+
 //-> Computed property name
 let prefix = 'my_prop_';
 let obj = {
@@ -330,6 +332,7 @@ var o = {
 o.b = 1;
 console.log(o.b); //-> 2
 o.b = 'poodle'; //-> throw Error : Invalid value for b property. It must be numeric.
+
 //-> other syntax
 var o = {
     a: 1,
@@ -346,5 +349,95 @@ var o = {
     }
 };
 ```
-### Object literal (Prototype)
+### Object Map
+```javascript
+var m = new Map();
+m.set('a', 1);
+if(m.has('a')){
+    console.log(m.get('a')); //-> 1
+}
 
+//-> Clear content
+m.clear();
+console.log(m.has('a')); //-> false
+
+//-> keys access
+m.set('b', 10);
+var k = m.keys();
+for(let w of k) {
+    console.log(w); //-> b
+}
+
+//-> values access
+var v = m.values();
+for(let w of v) {
+    console.log(v); //-> 10
+}
+```
+### Object Set 
+```javascript
+var s = new Set();
+s.add(10);
+s.add(5);
+console.log(s.add(5), s.size); //-> true, 2
+s.add(5);
+console.log(s.size); //-> 2
+
+//-> Acces values
+s.forEach(function(v){
+    console.log(v); //-> 10,5
+});
+
+//-> Array conversion
+var mySet2Array = [...s];
+console.log(mySet2Array); //-> [10,5]
+```
+### Modules (Syntax)
+```javascript
+//-> module file my-module.js
+module.exports = (function(){
+    return {
+    	sum: function(x = 0, y = 0){
+    	    return x + y;
+    	},
+    	
+    	pythagore: function(a = 0, b = 0){
+    	    return Math.sqrt((a*a) + (b*b));
+    	}
+    };
+});
+//-> main js file
+import * from 'my-module';
+console.log(sum(2, 2)); //-> 4
+console.log(Math.ceil(pythagore(2, 2))); //-> 3
+
+//-> Select references in imported module (with namespace)
+//-> Only sum is imported and available in lib
+import {sum} as lib from 'my-module';
+console.log(lib.sum(2, 2)); //-> 4
+
+//-> Exporting only one function my-module.js
+export default function(x){
+    return x + x;
+}
+
+//-> main.js
+import myModuleFunc from 'my-module';
+console.log(myModuleFunc(2)); //-> 4
+
+//-> Exporting only one class my-module.js
+export default class {
+    constructor(x){
+    	this.x = x;
+    }
+    
+    sum(y){
+    	return this.x + y;
+    }
+};
+
+//-> main.js
+import myModuleClass from 'my-module';
+var t = myModuleClass(2);
+console.log(t.sum(2)); //-> 4
+```
