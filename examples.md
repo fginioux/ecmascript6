@@ -458,3 +458,155 @@ Promise.all(['moduleA', 'moduleB'].map(x => System.import(x))).then((moduleA, mo
     //-> can use modules here
 });
 ```
+### Proxy (Concept)
+```javascript
+var handler = {
+    get(target, name){
+    	return (name in target)? target[name] : 'Default value';
+    }
+};
+
+var target = new Proxy({a: 1}, handler);
+console.log(target.a, target.b); //-> 1, 'Default value'
+```
+### Proxy (example: validator)
+```javascript
+let p_num = '_numeric', p_required = '_required';
+// Validator
+let validator = {
+    set(obj, prop, value){
+    	// Validations
+    	if(prop.indexOf(p_num) && !/^\d+$/.test(value)){
+    	    throw error(prop + ' must be a numeric !');
+    	} else if(prop.indexOf(p_required) && !/\S/.test(value)){
+    	    throw error(prop + ' is required !');
+    	}
+    	//-> assignment
+    	obj[prop] = value;
+    }
+};
+
+
+var p = new Proxy({}, validator);
+p['name' + p_required] = 'Poodle';
+p['age' + p_num] = 'My age is 18 !'; //-> throw an error 'age_numeric must be a numeric !';
+```
+### Array new methods
+```javascript
+// Array.from Iterable
+function double(args){
+    return Array.from(arguments, (el) => el * 2);
+}
+console.log(double(1, 2, 3)) //-> [2, 4, 6] in Array type
+//-> other example
+let lis = document.querySelectorAll('ul#myList li');
+Array.from(lis).forEach(function(li){
+    console.log(node);
+});
+
+// Array.find (return element find with a search function)
+console.log([1, 2, 3, 4].find((x) => { return x > 2; })); //-> 2 (first element with match with the search)
+
+// Array.findIndex (return element index find with a search function)
+console.log([1, 2, 3, 4].findIndex((x) => { return x > 3; })); //-> 3
+```
+### String new methods
+```javascript
+// String.startWith
+console.log('hello'.startWith('he')); //-> true
+console.log('hello'.startWith('el', 1)); //-> true
+
+// String.endsWith
+console.log('hello'.endsWith('o')); //-> true
+
+// String.contains
+console.log('hello'.contains('ll')); //-> true
+
+// String.repeat
+let t = 'hello'.repeat(3); 
+console.log(t); //-> hellohellohello
+```
+### Number new methods
+```javascript
+// Number.isInteger
+console.log(Number.isInteger(19)); //-> true
+console.log(Number.isInteger(1.9)); //-> false
+
+// Number.isNaN();
+console.log(Number.isNaN('t')); //-> true
+console.log(Number.isNaN(12)); //-> false
+
+// Number.isSafeInteger
+console.log(Number.isSafeInteger(2)); //-> true
+console.log(Number.isSafeInteger('2')); //-> false
+```
+### Iterators 
+```javascript
+var myIterator = function(items){
+    let index = 0;
+    return {
+        next(){
+            let done = (i >= items.length)
+              , value = !done ? items[i++] : undefined
+              , r = {done, value};
+
+            return r;
+        }
+    };
+};
+
+var it = myIterator([1, 2, 3, 4]);
+console.log(it.next().value); //-> 1
+console.log(it.next().value); //-> 2
+console.log(it.next().value); //-> 3
+console.log(it.next()); //-> {value: 4, done: true}
+// loop an iterator
+for(let x of new myIterator([1, 2, 3, 4])){
+    console.log(x); //-> 1, 2, 3, 4
+}
+
+// String
+let t = 'My new string';
+for(let l of t){
+    console.log(l); //-> output each letter
+}
+
+// Map 
+let m = new Map();
+m.set('a', 1);
+m.set('b', 2);
+for(let v of m){
+    console.log(v); //-> ['a', 1], ['b', 2]
+}
+
+// Set
+let s = new Set();
+s.add(5);
+s.add(10);
+for(let w of s){
+    console.log(w); //-> 5, 10
+}
+```
+### Generators 
+```javascript
+// Generator function
+function* g(items){
+    for(let i = 0, l = items.length; i < l; i++) {
+    	yield items[i];
+    }
+}
+//-> othe syntax
+var g = function*(){};
+
+// Using generator to create iterable objects
+for(let w of g([1, 3])) {
+    console.log(w); //-> 1, 3
+}
+
+// Object syntax
+var o = {
+    *g(items){
+    	// Code here
+    }
+};
+```
