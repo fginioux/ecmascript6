@@ -424,6 +424,9 @@ export default function(x){
 //-> main.js
 import myModuleFunc from 'my-module';
 console.log(myModuleFunc(2)); //-> 4
+//-> other syntax (_ == default)
+import _ as myModuleFunc from 'my-module';
+console.log(myModuleFunc(2)); //-> 4
 
 //-> Exporting only one class my-module.js
 export default class {
@@ -440,4 +443,18 @@ export default class {
 import myModuleClass from 'my-module';
 var t = new myModuleClass(2);
 console.log(t.sum(2)); //-> 4
+```
+### Module (Loader)
+```javascript
+let file = 'my-module';
+System.import(file).then(function(myModule){
+    myModule.sum(2, 2); //-> 4
+}).catch(function(err){
+   //-> load error 
+});
+
+//-> load multiple modules
+Promise.all(['moduleA', 'moduleB'].map(x => System.import(x))).then((moduleA, moduleB) => {
+    //-> can use modules here
+});
 ```
