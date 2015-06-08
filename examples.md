@@ -438,6 +438,6 @@ export default class {
 
 //-> main.js
 import myModuleClass from 'my-module';
-var t = myModuleClass(2);
+var t = new myModuleClass(2);
 console.log(t.sum(2)); //-> 4
 ```
