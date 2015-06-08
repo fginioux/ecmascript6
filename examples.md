@@ -290,3 +290,61 @@ get('http://dogtime.com/dog-breeds/poodle').then(function(html){
     //-> Error
 });
 ```
+### Object literal (Syntax)
+```javascript
+//-> properties
+let a = 1, b = 2;
+let obj = {a, b};
+console.log(obj.a); //-> 1
+//-> methods
+let obj = {
+    a: 1,
+    b(){
+    	console.log(`a == ${this.a}, c == ${this.c}`);
+    },
+    c: "poodle"
+};
+obj.b() //-> a == 1, c == poodle
+//-> Computed property name
+let prefix = 'my_prop_';
+let obj = {
+   [prefix + 'name']: 'poodle',
+   [prefix + 'age']: 34
+};
+console.log(`Object name == ${obj[prefix + 'name']}`); //-> Object name == poodle
+```
+### Object literal (Accessors)
+```javascript
+var o = {
+   a: 1,
+   get b(){
+   	return this.b + this.a;
+   },
+   set b(value = 0){
+   	if(!/^\d+$/.test(value)){
+            throw Error('Invalid value for b property. It must be numeric.');
+        } else this.b = value;
+   }
+};
+
+o.b = 1;
+console.log(o.b); //-> 2
+o.b = 'poodle'; //-> throw Error : Invalid value for b property. It must be numeric.
+//-> other syntax
+var o = {
+    a: 1,
+    b: {
+    	enumerable: true,
+    	get: function(){
+    	    return this.b + this.a;
+    	},
+    	set: function(value = 0){
+    	    if(!/^\d+$/.test(value)){
+                throw Error('Invalid value for b property. It must be numeric.');
+            } else this.b = value;
+    	}
+    }
+};
+```
+### Object literal (Prototype)
+
