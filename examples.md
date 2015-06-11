@@ -513,8 +513,8 @@ console.log([1, 2, 3, 4].findIndex((x) => { return x > 3; })); //-> 3
 ### String new methods
 ```javascript
 // String.startWith
-console.log('hello'.startWith('he')); //-> true
-console.log('hello'.startWith('el', 1)); //-> true
+console.log('hello'.startsWith('he')); //-> true
+console.log('hello'.startsWith('el', 1)); //-> true
 
 // String.endsWith
 console.log('hello'.endsWith('o')); //-> true
