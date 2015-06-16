@@ -87,6 +87,48 @@ var Person = function(birthdate){
 var me = new Person('1972-02-21 01:00:00');
 console.log(me.age); //-> 43
 ```
+### Functions parameters (default value)
+```javascript
+let f = function(x, y = 12){
+    return x + y;
+};
+console.log(f(2)); //-> 14
+console.log(f(2, 10)); //-> 12
+```
+### Functions parameters (variable number)
+```javascript
+let f = fucntion(x, ...y){
+    // y is an array with all undeclared arguments
+    for(let i = 0, l = y.length; i < l; i++){
+        x += y[i];
+    }
+    
+    return x;
+};
+console.log(f(2)); //-> 2
+console.log(f(2,4)); //-> 6
+console.log(f(2,4,6,8,10)); //-> 30
+```
+### Functions parameters (Rest argument replacement)
+```javascript
+let f = function(w, x, y){
+    return w + x + y;
+}
+
+// replace all arguments with array values
+console.log(f(...[1,2,3])); //-> 6
+
+// possible too
+var t = [1, 2, 3]
+  , w = [10, 11, ...t];
+console.log(w.split('-')); //-> 10-11-1-2-3
+
+// possible too
+var t = 'poodle'
+  , w = [...t];
+console.log(w.split(',')); //-> p,o,o,d,l,e 
+```
+<a name="poo"></a>
 ### OOP support
 ```javascript
 // Base class
@@ -155,47 +197,6 @@ console.log(p instanceof Point); //-> 1
 console.log(p instanceof LabelPoint); //-> 0
 console.log(lPoint instanceof Point); //-> 1
 console.log(lPoint instanceof LabelPoint); //-> 1
-```
-### Functions parameters (default value)
-```javascript
-let f = function(x, y = 12){
-    return x + y;
-};
-console.log(f(2)); //-> 14
-console.log(f(2, 10)); //-> 12
-```
-### Functions parameters (variable number)
-```javascript
-let f = fucntion(x, ...y){
-    // y is an array with all undeclared arguments
-    for(let i = 0, l = y.length; i < l; i++){
-        x += y[i];
-    }
-    
-    return x;
-};
-console.log(f(2)); //-> 2
-console.log(f(2,4)); //-> 6
-console.log(f(2,4,6,8,10)); //-> 30
-```
-### Functions parameters (Rest argument replacement)
-```javascript
-let f = function(w, x, y){
-    return w + x + y;
-}
-
-// replace all arguments with array values
-console.log(f(...[1,2,3])); //-> 6
-
-// possible too
-var t = [1, 2, 3]
-  , w = [10, 11, ...t];
-console.log(w.split('-')); //-> 10-11-1-2-3
-
-// possible too
-var t = 'poodle'
-  , w = [...t];
-console.log(w.split(',')); //-> p,o,o,d,l,e 
 ```
 ### Template string 
 ```javascript
