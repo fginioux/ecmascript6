@@ -264,6 +264,7 @@ function f({x = 0, y = 0} = {}, n){
 var {x: a, y: b} = f({x: 2}, 5);
 console.log(a, b); //-> 10, 0
 ```
+<a name="promise"></a>
 ### Promise Object
 ```javascript
 function get(url = 'http://www.google.ca'){
