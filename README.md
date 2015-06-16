@@ -1,11 +1,34 @@
 # ecmascript6
-Liste de ressources et tableau de bord pour le lunch &amp; learn sur EcmaScript 6
+Lunch & learn réalisé en 2015 sur la sortie de la version 6 d'ECMASCRIPT. 
+
+## Application 
+Elle regroupe des exemples de code et de mise en place de traceur/compilers server & client. 
+Pour se faire, installer l'application en local et démarrez la avec la liste possible de traceur suivante :
+- TRACER=client-babel ;
+- TRACER=server-babel ;
+- TRACER=client-traceur-simple ;
+- TRACER=server-traceur-simple ;
+
+```javascript
+TRACER=server-babel node app.js
+```
+
+L'application va compiler les scripts ES6 en ES5.
+
+Pour un traceur client side, rendez-vous à l'adresse :
+```javascript
+localhost:5001
+```
+Pour un traceur server, démarrez le fichier d'application compilé :
+```javascript
+TRACER=server-babel node app.js
+node server/babel/app.js
+```
 
 ## Liste de liens ressources
-### EcmaScript6
 http://www.2ality.com/2015/02/using-es6-today-minsk.html<br>
-http://es6-features.org/?utm_source=javascriptweekly&utm_medium=email#SymbolExportImport (très bien pour les exemples)<br>
-http://tagtree.tv/courses/expert-es6 (Cours)<br>
+http://es6-features.org/?utm_source=javascriptweekly&utm_medium=email#SymbolExportImport<br>
+http://tagtree.tv/courses/expert-es6<br>
 http://www.2ality.com/2015/02/es6-classes-final.html<br>
 http://fr.slideshare.net/x00mario/es6-en<br>
 http://kangax.github.io/compat-table/es6/<br>
@@ -21,30 +44,4 @@ https://www.youtube.com/watch?v=Z7yS28I5ci4<br>
 https://www.youtube.com/watch?v=nPnF4pZ8zOA<br>
 https://www.airpair.com/angularjs/posts/preparing-for-the-future-of-angularjs<br>
 http://www.2ality.com/2013/08/es6-callables.html<br>
-http://odetocode.com/videos (cool !!)<br>
-
-### Javascript
-http://christianheilmann.com/2015/02/15/flipboard-and-the-mobile-web-dream/<br>
-https://medium.com/the-thinkmill/making-the-case-for-progressive-javascript-a98dfa82b9d7<br>
-https://medium.com/@ilyothehorrid/writing-code-for-humans-5b80a89f439c<br>
-https://medium.com/@iojs/io-js-and-a-node-js-foundation-4e14699fb7be<br>
-
-### JS Server side
-
-
-NodeJs -> coding in ES6 –-v8-options
-
-Argument function structure :
-Var m = function({age : s}){};
-
-Cf. 
-Module loader ;
-Compilation on the fly sur le load de modules externes ;
-
-Iterators et generators
-
-Generator replace callbacks 
-
-KOA framework cf. => using generator to flush callbacks
-
-Module loader / es6-module-loader
+http://odetocode.com/videos<br>
