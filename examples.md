@@ -396,6 +396,7 @@ s.forEach(function(v){
 var mySet2Array = [...s];
 console.log(mySet2Array); //-> [10,5]
 ```
+<a name="module"></a>
 ### Modules (Syntax)
 ```javascript
 //-> module file my-module.js
