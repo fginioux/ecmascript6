@@ -1,4 +1,4 @@
-# ecmascript6
+# ECMASCRIPT 6
 Lunch & learn réalisé en 2015 sur la sortie de la version 6 d'ECMASCRIPT. 
 
 ## Application 
