@@ -37,7 +37,7 @@ module.exports = function(grunt) {
       },
       server: {
         files: {
-          './server/traceur-simple-server/app.js': ['./src/apps/traceur-simple-server/app.js']
+          './server/traceur-simple/app.js': ['./src/apps/traceur-simple-server/app.js']
         }
       },
       client: {
