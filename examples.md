@@ -211,6 +211,7 @@ let v = `My text with a statement a+b == ${a + b}`;
 console.log(t); //-> My text with the a variable 5
 console.log(v); //-> My text with a statement a+b == 15
 ```
+<a name="destructuring"></a>
 ### Destructuring assigment (Array)
 ```javascript
 // Basic
