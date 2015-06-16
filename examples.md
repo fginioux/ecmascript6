@@ -56,6 +56,7 @@ for(let i = 0; i < l; i++) {
 // Use method builded in loop
 console.log(methods[1](2)); //-> 2
 ```
+<a name="functions"></a>
 ### Arrow functions (syntax)
 ```javascript
 () => { statement }
