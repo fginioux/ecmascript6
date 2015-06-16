@@ -354,6 +354,7 @@ var o = {
     }
 };
 ```
+<a name="map"></a>
 ### Object Map
 ```javascript
 var m = new Map();
@@ -379,6 +380,7 @@ for(let w of v) {
     console.log(v); //-> 10
 }
 ```
+<a name="set"></a>
 ### Object Set 
 ```javascript
 var s = new Set();
