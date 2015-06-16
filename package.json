@@ -1,0 +1,24 @@
+{
+  "name": "ES6",
+  "version": "0.1.0",
+  "repository": {},
+  "dependencies": {
+    "grunt": "~0.4.2",
+    "grunt-cli": "~0.1.13",
+    "grunt-babel": "~5.0.1",
+    "traceur": "~0.0.90",
+    "node-static": "~0.7.6",
+    "grunt-contrib-watch": "~0.6.1",
+    "grunt-contrib-copy": "~0.8.0",
+    "colors": "~1.1.0",
+    "core-js": "~0.9.16",
+    "traceur": "~0.0.90",
+    "grunt-traceur-simple": "~0.9.9"
+  },
+  "devDependencies": {
+    "grunt-traceur": "^0.5.4"
+  },
+  "engines": {
+    "node": "0.10.x"
+  }
+}
