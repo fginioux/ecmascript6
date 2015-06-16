@@ -1,7 +1,7 @@
 #Examples
 List of ECMAScript 6 implementation
-
-### Constant <a name="constant"></a>
+<a name="constant"></a>
+### Constant 
 ```javascript
 const MY_CONST = 44;
 console.log(MY_CONST > 100); //-> 0
@@ -11,7 +11,8 @@ const MY_CONST = 23; //-> Error
 var MY_CONST = 12 //-> Error
 let MY_CONST = 2 //-> Error
 ```
-### Scope Variables (simple) <a name="blockscope"></a>
+<a name="blockscope"></a>
+### Scope Variables (simple)
 ```javascript
 // let keyword
 let i = 0;
