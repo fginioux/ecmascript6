@@ -595,6 +595,30 @@ for(let w of s){
     console.log(w); //-> 5, 10
 }
 ```
+<a name="iterator-example"></a>
+### Iterators (example)
+```javascript
+var myPoodle = {type: 'dog', race: 'poodle', color: '#fff'};
+myPoodle[Symbol.iterator] = function(){
+	let i = 0
+	  , props = Object.keys(this).filter(x => { return (typeof this[x] !== 'function')? true : false; })
+	  , that = this;
+
+	return {
+		next(){
+			if(i < props.length) {
+				return {value: that[props[i++]], done: false};
+			} else {
+				return {done: true};
+			}
+		}
+	};
+};
+ 
+for(let n of myPoodle) {
+	console.log(n);
+}
+```
 ### Generators 
 ```javascript
 // Generator function
