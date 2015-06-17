@@ -35,5 +35,3 @@ var tx = function(p = 'poodle', ...r) {
 };
 
 tx();
-
-var p = new Proxy();

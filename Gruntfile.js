@@ -85,10 +85,16 @@ module.exports = function(grunt) {
       }
     },
     copy: {
-      'babel-client': {
+      'babel': {
         files: [
           {src: './src/libs/requirejs.js', dest: './client/babel/js/libs/requirejs.js'},
-          {src: './src/libs/corejs.js', dest: './client/babel/js/libs/corejs.js'}
+          {src: './src/libs/corejs.js', dest: './client/babel/js/libs/corejs.js'},
+          {src: './src/apps/babel-client/html/index.html', dest: './client/babel/index.html'}
+        ]
+      },
+      'traceur': {
+        files: [
+          {src: './src/apps/traceur-simple-client/html/index.html', dest: './client/traceur-simple/index.html'}
         ]
       }
     }
@@ -102,11 +108,11 @@ module.exports = function(grunt) {
   //grunt-traceur NON (https://github.com/aaronfrost/grunt-traceur)
   
   // --> traceur Babel client-side
-  grunt.registerTask('client-babel', ['babel:client-app', 'babel:client-modules', 'copy:babel-client', 'watch:babel-client']);
+  grunt.registerTask('client-babel', ['babel:client-app', 'babel:client-modules', 'copy:babel', 'watch:babel-client']);
   // --> traceur Babel server-side
   grunt.registerTask('server-babel', ['babel:server', 'watch:babel-server']);
   // --> traceur Traceur server-side
   grunt.registerTask('server-traceur-simple', ['traceur:server', 'watch:traceur-simple-server']);
   // --> traceur Traceur client-side
-  grunt.registerTask('client-traceur-simple', ['traceur:client', 'watch:traceur-simple-client']);
+  grunt.registerTask('client-traceur-simple', ['traceur:client', 'copy:traceur', 'watch:traceur-simple-client']);
 };
