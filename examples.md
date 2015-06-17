@@ -618,3 +618,38 @@ var o = {
     }
 };
 ```
+<a name="generator-example">
+### Generators (example)
+```javascript
+function* prime(i = 2, m = 100){
+	var i = (i && i > 1)? i : 2
+	  , p = [2, 3, 5, 7, 11, 13, 17, 19, 23, 29, 31, 37, 41, 47, 53, 59, 61, 67, 71, 73, 79, 83, 89, 97, 101];
+
+	// Loop generator
+	for(let j = i; j < m; j++) {
+		// Check if j is in first list of prime number
+		if(p.indexOf(j) !== -1) {
+			yield j;
+		} else {
+			let matched = false;
+			for(let ii = 0, ll = p.length; ii < ll; ii++) {
+				if(j%p[ii] === 0) {
+					matched = true;
+					break;
+				}
+			}
+			
+			if(!matched) {
+				yield j;
+			}
+		}
+	}
+};
+var g = prime(10, 25);
+console.log(g.next().value);
+console.log(g.next().value);
+for(let v of g) { console.log(v); } // affiche 17, 19 et 23
+console.log(g.next().value); // affiche undefined 
+```
+
+
