@@ -414,7 +414,7 @@ console.log(mySet2Array); //-> [10,5]
 <a name="module"></a>
 ### Modules (Syntax)
 ```javascript
-//-> module file my-module.js
+//-> module file my-module.js (not supported by traceur)
 module.exports = (function(){
     return {
     	sum: function(x = 0, y = 0){
@@ -426,17 +426,23 @@ module.exports = (function(){
     	}
     };
 });
-//-> main js file
+
+//-> supported by traceur
+export var sum = function(){};
+export var pythagore = function(){};
+
+//-> main js file (not supported by traceur)
 import * from 'my-module';
 console.log(sum(2, 2)); //-> 4
 console.log(Math.ceil(pythagore(2, 2))); //-> 3
 
 //-> Select references in imported module (with namespace)
 //-> Only sum is imported and available in lib
+//-> Alias (as keyword) not supported by traceur
 import {sum} as lib from 'my-module';
 console.log(lib.sum(2, 2)); //-> 4
 
-//-> Exporting only one function my-module.js
+//-> Exporting only one function my-module.js (not supported by traceur)
 export default function(x){
     return x + x;
 }
@@ -444,7 +450,7 @@ export default function(x){
 //-> main.js
 import myModuleFunc from 'my-module';
 console.log(myModuleFunc(2)); //-> 4
-//-> other syntax (_ == default)
+//-> other syntax (_ == default) (not supported by traceur)
 import _ as myModuleFunc from 'my-module';
 console.log(myModuleFunc(2)); //-> 4
 
@@ -460,7 +466,7 @@ export default class {
 };
 
 //-> main.js
-import myModuleClass from 'my-module';
+import {myModuleClass} from 'my-module';
 var t = new myModuleClass(2);
 console.log(t.sum(2)); //-> 4
 ```
