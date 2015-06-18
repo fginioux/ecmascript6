@@ -118,12 +118,12 @@ let f = function(w, x, y){
 // replace all arguments with array values
 console.log(f(...[1,2,3])); //-> 6
 
-// possible too
+// possible too (not supported by traceur)
 var t = [1, 2, 3]
   , w = [10, 11, ...t];
 console.log(w.split('-')); //-> 10-11-1-2-3
 
-// possible too
+// possible too (not supported by traceur)
 var t = 'poodle'
   , w = [...t];
 console.log(w.split(',')); //-> p,o,o,d,l,e 
