@@ -9,13 +9,19 @@ module.exports = function(grunt) {
     babel: {
       'client-modules': {
         options: {
-          modules: 'amd'
+          modules: 'amd',
+          experimental: true,
+          stage: 0
         },
         files: {
           './client/babel/js/modules/human.js': ['./src/apps/babel-client/modules/human.js']
         }
       },
       'client-app': {
+        options: {
+          experimental: true,
+          stage: 0
+        },
         files: {
           './client/babel/js/app.js': ['./src/apps/babel-client/app.js']
         }

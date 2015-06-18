@@ -41,3 +41,12 @@ console.log(str.startsWith('Gini', 5));
 console.log(str.endsWith('!'));
 console.log(str.contains('un type'));
 
+
+
+
+
+
+
+
+
+
