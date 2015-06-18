@@ -77,15 +77,15 @@ console.log(reduce([1,1,2]) === 4); //-> 1
 ```javascript
 var Person = function(birthdate){
     this.birthdate = new Date(birthdate);
-	this.age = () => { Math.round(((Date.now() - this.birthdate)/1000)/(525949*60))};
-	// this in arrow function (instance of Person)
-	window.setTimeout(() => {
-	    console.log(this.age); //-> 43 with this.bithdate === '1972-02-21 01:00:00'
-	}, 1000);
+    this.age = () => { return Math.round(((Date.now() - this.birthdate)/1000)/(525949*60)); };
+    // this in arrow function (instance of Person)
+    window.setTimeout(() => {
+	console.log(this.age()); //-> 43 with this.bithdate === '1972-02-21 01:00:00'
+    }, 1000);
 };
 
 var me = new Person('1972-02-21 01:00:00');
-console.log(me.age); //-> 43
+console.log(me.age()); //-> 43
 ```
 ### Functions parameters (default value)
 ```javascript
