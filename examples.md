@@ -97,7 +97,7 @@ console.log(f(2, 10)); //-> 12
 ```
 ### Functions parameters (variable number)
 ```javascript
-let f = fucntion(x, ...y){
+let f = function(x, ...y){
     // y is an array with all undeclared arguments
     for(let i = 0, l = y.length; i < l; i++){
         x += y[i];
