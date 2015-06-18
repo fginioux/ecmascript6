@@ -4,13 +4,13 @@ Lunch & learn réalisé en 2015 sur la sortie de la version 6 d'ECMASCRIPT.
 ## Application 
 Elle regroupe des exemples de code et de mise en place de traceur/compilers server & client. 
 Pour se faire, installer l'application en local et démarrez la avec la liste possible de traceur suivante :
-- TRACER=client-babel ;
-- TRACER=server-babel ;
-- TRACER=client-traceur-simple ;
-- TRACER=server-traceur-simple ;
+- TRACEUR=client-babel ;
+- TRACEUR=server-babel ;
+- TRACEUR=client-traceur-simple ;
+- TRACEUR=server-traceur-simple ;
 
 ```javascript
-TRACER=server-babel node app.js
+TRACEUR=server-babel node app.js
 ```
 
 L'application va compiler les scripts ES6 en ES5.
@@ -21,9 +21,17 @@ localhost:5001
 ```
 Pour un traceur server, démarrez le fichier d'application compilé :
 ```javascript
-TRACER=server-babel node app.js
+TRACEUR=server-babel node app.js
 node server/babel/app.js
 ```
+Les exemples de code complétés fonctionnent tous avec le traceur traceur-simple (Google traceur-compiler). 
+Pour les consulter, allez dans le dossier /src/apps/traceur-simple-client et ouvrez le fichier app.js. Celui-ci contient à la suite tous les exemples de code fonctionnels. Les modules sont également fonctionnels et utilisés dans le fichier app.js. 
+En démarrant votre application comme suit : 
+```javascript
+TRACEUR=client-traceur-simple node app.js
+localhost:5001 //-> Application accessible à partir de cette url
+```
+Vous pouvez valider via la console toutes les fonctionnalités accéssibles via traceur.
 
 ## Liste de liens ressources
 http://www.2ality.com/2015/02/using-es6-today-minsk.html<br>
