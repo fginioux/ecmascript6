@@ -143,29 +143,41 @@ class Point {
 		return '(' + this.x + ',' + this.y + ')';
 	}
 	
-	// Static method
+	// Static method (not supported by traceur)
 	static log(){
 	    console.log('This is an instance of Point class.');
 	}
     
-    // Getter
+    	// Getter (not supported - name conflict)
 	get x(){
 		return this.x;
 	}
-
+	
+	// Getter (not supported - name conflict)
 	get y(){
 		return this.y;
 	}
     
-    // Setter
+    	// Setter (not supported - name conflict)
 	set x(value){
 	    if(!/^\d+$/.test(value)){
 	        throw Error('Invalid value for x property. It must be numeric.');
 	    } else this.y = value;
 	}
-
+	
+	// Setter (not supported - name conflict)
 	set y(value){
-		this.y = value;
+	    this.y = value;
+	}
+	
+	// Setter (supported by traceur)
+	set position(position) {
+	    // Destructuration affectation
+	    ({x: this.x, y: this.y} = position);
+	}
+	
+	get position() {
+	    return {x: this.x, y: this.y};
 	}
 };
 
