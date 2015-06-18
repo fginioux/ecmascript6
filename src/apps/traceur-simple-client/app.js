@@ -373,41 +373,70 @@ try {
 	console.error('String new methods (startsWith, endsWith, contains) not supported by traceur.');
 }
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-var fx = function(t, ...rest){
-	if(t) {
-		console.log(t);
+/**
+ * @description  
+ * Number new methods
+ * {@link https://github.com/fginioux/ecmascript6/blob/master/examples.md#number-new-methods | Number new methods }
+ */
+try {
+	let i = 12;
+	let ii = '12';
+	if(Number.isInteger(i) && !Number.isNaN(ii) && Number.isNaN(NaN) && Number.isSafeInteger(i) && !Number.isSafeInteger(ii)) {
+		console.info('Number new methods (isInteger, isNaN, isSafeInteger) supported by traceur.');
 	}
+} catch(e) {
+	console.error('Number new methods (isInteger, isNaN, isSafeInteger) not supported by traceur.');
+}
 
-	if(rest) {
-		console.log(rest);
+/**
+ * @description  
+ * Object syntax
+ * {@link https://github.com/fginioux/ecmascript6/blob/master/examples.md#object-literal-syntax | Object syntax}
+ */
+try {
+	let name = 't';
+	let s = Symbol('foo');
+	let o = {
+		a: 1,
+		b() {
+			return this.a + 10;
+		},
+		c: 'poodle',
+		[name + '_prefix']: 'dynamic name',
+		[s](){
+			return 10;
+		}
+	};
+	console.info('Object syntax supported by traceur.');
+} catch(e) {
+	console.error('Object syntax not supported by traceur.');
+}
 
-		var [a, b] = rest;
+/**
+ * @description 
+ * Object assessors
+ * {@link https://github.com/fginioux/ecmascript6/blob/master/examples.md#object-literal-accessors | Object assessors}
+ */
+try {
+	let o = {
+		a: 1,
+		b: 10,
+		get values() {
+			return {a: this.a, b: this.b};
+		},
 
-		console.log(`a == ${a}`);
+		set values(values) {
+			({a: this.a, b: this.b} = values);
+		}
+	};
+
+	o.values = {a: 10, b: 1};
+	if(o.a == 10) {
+		console.info('Object assessors supported by traceur.');
 	}
-};
-
-var tx = function(p = 'poodle', ...r) {
-	console.log(p);
-};
+} catch(e) {
+	console.error('Object assessors not supported by traceur.');
+}
 
 
 function* prime(i = 2, m = 100){
