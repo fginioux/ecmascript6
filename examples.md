@@ -559,8 +559,10 @@ console.log(Number.isInteger(19)); //-> true
 console.log(Number.isInteger(1.9)); //-> false
 
 // Number.isNaN();
-console.log(Number.isNaN('t')); //-> true
+console.log(Number.isNaN('t')); //-> false
 console.log(Number.isNaN(12)); //-> false
+console.log(Number.isNaN(0/0)); //-> true
+console.log(Number.isNaN(NaN)); //-> true
 
 // Number.isSafeInteger
 console.log(Number.isSafeInteger(2)); //-> true
