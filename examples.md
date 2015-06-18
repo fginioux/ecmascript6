@@ -147,30 +147,8 @@ class Point {
 	static log(){
 	    console.log('This is an instance of Point class.');
 	}
-    
-    	// Getter (not supported - name conflict)
-	get x(){
-		return this.x;
-	}
-	
-	// Getter (not supported - name conflict)
-	get y(){
-		return this.y;
-	}
-    
-    	// Setter (not supported - name conflict)
-	set x(value){
-	    if(!/^\d+$/.test(value)){
-	        throw Error('Invalid value for x property. It must be numeric.');
-	    } else this.y = value;
-	}
-	
-	// Setter (not supported - name conflict)
-	set y(value){
-	    this.y = value;
-	}
-	
-	// Setter (supported by traceur)
+ 
+	// Setter
 	set position(position) {
 	    // Destructuration affectation
 	    ({x: this.x, y: this.y} = position);
@@ -194,13 +172,8 @@ class LabelPoint extends Point {
 }
 
 var p = new Point(2, 4);
-console.log(p.x); //-> 2 (use getter in background)
-p.x = 10; //-> use setter in background
-try {
-    p.x = 'poodle'; 
-} catch(e){
-    console.log(e.message); //-> Invalid value for x property. It must be numeric.
-}
+console.log(p.position); //-> {x: 2, y: 4}
+p.position = {x: 10, y: 2}; //-> use setter in background
 
 // Instance check
 var lPoint = new LabelPoint(10, 100, 'My label');
@@ -559,8 +532,10 @@ console.log(Number.isInteger(19)); //-> true
 console.log(Number.isInteger(1.9)); //-> false
 
 // Number.isNaN();
-console.log(Number.isNaN('t')); //-> true
+console.log(Number.isNaN('t')); //-> false
 console.log(Number.isNaN(12)); //-> false
+console.log(Number.isNaN(0/0)); //-> true
+console.log(Number.isNaN(NaN)); //-> true
 
 // Number.isSafeInteger
 console.log(Number.isSafeInteger(2)); //-> true
