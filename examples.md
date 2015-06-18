@@ -77,15 +77,15 @@ console.log(reduce([1,1,2]) === 4); //-> 1
 ```javascript
 var Person = function(birthdate){
     this.birthdate = new Date(birthdate);
-	this.age = () => { Math.round(((Date.now() - this.birthdate)/1000)/(525949*60))};
-	// this in arrow function (instance of Person)
-	window.setTimeout(() => {
-	    console.log(this.age); //-> 43 with this.bithdate === '1972-02-21 01:00:00'
-	}, 1000);
+    this.age = () => { return Math.round(((Date.now() - this.birthdate)/1000)/(525949*60)); };
+    // this in arrow function (instance of Person)
+    window.setTimeout(() => {
+	console.log(this.age()); //-> 43 with this.bithdate === '1972-02-21 01:00:00'
+    }, 1000);
 };
 
 var me = new Person('1972-02-21 01:00:00');
-console.log(me.age); //-> 43
+console.log(me.age()); //-> 43
 ```
 ### Functions parameters (default value)
 ```javascript
@@ -97,7 +97,7 @@ console.log(f(2, 10)); //-> 12
 ```
 ### Functions parameters (variable number)
 ```javascript
-let f = fucntion(x, ...y){
+let f = function(x, ...y){
     // y is an array with all undeclared arguments
     for(let i = 0, l = y.length; i < l; i++){
         x += y[i];
@@ -118,12 +118,12 @@ let f = function(w, x, y){
 // replace all arguments with array values
 console.log(f(...[1,2,3])); //-> 6
 
-// possible too
+// possible too (not supported by traceur)
 var t = [1, 2, 3]
   , w = [10, 11, ...t];
 console.log(w.split('-')); //-> 10-11-1-2-3
 
-// possible too
+// possible too (not supported by traceur)
 var t = 'poodle'
   , w = [...t];
 console.log(w.split(',')); //-> p,o,o,d,l,e 
@@ -143,29 +143,41 @@ class Point {
 		return '(' + this.x + ',' + this.y + ')';
 	}
 	
-	// Static method
+	// Static method (not supported by traceur)
 	static log(){
 	    console.log('This is an instance of Point class.');
 	}
     
-    // Getter
+    	// Getter (not supported - name conflict)
 	get x(){
 		return this.x;
 	}
-
+	
+	// Getter (not supported - name conflict)
 	get y(){
 		return this.y;
 	}
     
-    // Setter
+    	// Setter (not supported - name conflict)
 	set x(value){
 	    if(!/^\d+$/.test(value)){
 	        throw Error('Invalid value for x property. It must be numeric.');
 	    } else this.y = value;
 	}
-
+	
+	// Setter (not supported - name conflict)
 	set y(value){
-		this.y = value;
+	    this.y = value;
+	}
+	
+	// Setter (supported by traceur)
+	set position(position) {
+	    // Destructuration affectation
+	    ({x: this.x, y: this.y} = position);
+	}
+	
+	get position() {
+	    return {x: this.x, y: this.y};
 	}
 };
 
@@ -402,7 +414,7 @@ console.log(mySet2Array); //-> [10,5]
 <a name="module"></a>
 ### Modules (Syntax)
 ```javascript
-//-> module file my-module.js
+//-> module file my-module.js (not supported by traceur)
 module.exports = (function(){
     return {
     	sum: function(x = 0, y = 0){
@@ -414,17 +426,23 @@ module.exports = (function(){
     	}
     };
 });
-//-> main js file
+
+//-> supported by traceur
+export var sum = function(){};
+export var pythagore = function(){};
+
+//-> main js file (not supported by traceur)
 import * from 'my-module';
 console.log(sum(2, 2)); //-> 4
 console.log(Math.ceil(pythagore(2, 2))); //-> 3
 
 //-> Select references in imported module (with namespace)
 //-> Only sum is imported and available in lib
+//-> Alias (as keyword) not supported by traceur
 import {sum} as lib from 'my-module';
 console.log(lib.sum(2, 2)); //-> 4
 
-//-> Exporting only one function my-module.js
+//-> Exporting only one function my-module.js (not supported by traceur)
 export default function(x){
     return x + x;
 }
@@ -432,7 +450,7 @@ export default function(x){
 //-> main.js
 import myModuleFunc from 'my-module';
 console.log(myModuleFunc(2)); //-> 4
-//-> other syntax (_ == default)
+//-> other syntax (_ == default) (not supported by traceur)
 import _ as myModuleFunc from 'my-module';
 console.log(myModuleFunc(2)); //-> 4
 
@@ -448,7 +466,7 @@ export default class {
 };
 
 //-> main.js
-import myModuleClass from 'my-module';
+import {myModuleClass} from 'my-module';
 var t = new myModuleClass(2);
 console.log(t.sum(2)); //-> 4
 ```
@@ -513,7 +531,7 @@ Array.from(lis).forEach(function(li){
 });
 
 // Array.find (return element find with a search function)
-console.log([1, 2, 3, 4].find((x) => { return x > 2; })); //-> 2 (first element with match with the search)
+console.log([1, 2, 3, 4].find((x) => { return x > 2; })); //-> 3 (first element with match with the search)
 
 // Array.findIndex (return element index find with a search function)
 console.log([1, 2, 3, 4].findIndex((x) => { return x > 3; })); //-> 3
@@ -595,6 +613,30 @@ for(let w of s){
     console.log(w); //-> 5, 10
 }
 ```
+<a name="iterator-example"></a>
+### Iterators (example)
+```javascript
+var myPoodle = {type: 'dog', race: 'poodle', color: '#fff'};
+myPoodle[Symbol.iterator] = function(){
+	let i = 0
+	  , props = Object.keys(this).filter(x => { return (typeof this[x] !== 'function')? true : false; })
+	  , that = this;
+
+	return {
+		next(){
+			if(i < props.length) {
+				return {value: that[props[i++]], done: false};
+			} else {
+				return {done: true};
+			}
+		}
+	};
+};
+ 
+for(let n of myPoodle) {
+	console.log(n);
+}
+```
 ### Generators 
 ```javascript
 // Generator function
@@ -618,3 +660,38 @@ var o = {
     }
 };
 ```
+<a name="generator-example">
+### Generators (example)
+```javascript
+function* prime(i = 2, m = 100){
+	var i = (i && i > 1)? i : 2
+	  , p = [2, 3, 5, 7, 11, 13, 17, 19, 23, 29, 31, 37, 41, 47, 53, 59, 61, 67, 71, 73, 79, 83, 89, 97, 101];
+
+	// Loop generator
+	for(let j = i; j < m; j++) {
+		// Check if j is in first list of prime number
+		if(p.indexOf(j) !== -1) {
+			yield j;
+		} else {
+			let matched = false;
+			for(let ii = 0, ll = p.length; ii < ll; ii++) {
+				if(j%p[ii] === 0) {
+					matched = true;
+					break;
+				}
+			}
+			
+			if(!matched) {
+				yield j;
+			}
+		}
+	}
+};
+var g = prime(10, 25);
+console.log(g.next().value);
+console.log(g.next().value);
+for(let v of g) { console.log(v); } // affiche 17, 19 et 23
+console.log(g.next().value); // affiche undefined 
+```
+
+
