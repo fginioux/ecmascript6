@@ -438,91 +438,90 @@ try {
 	console.error('Object assessors not supported by traceur.');
 }
 
+/**
+ * @description  
+ * Generators
+ * {@link https://github.com/fginioux/ecmascript6/blob/master/examples.md#generators-example | Generators}
+ */
+try {
+	function* prime(i = 2, m = 100){
+		var i = (i && i > 1)? i : 2
+		  , p = [2, 3, 5, 7, 11, 13, 17, 19, 23, 29, 31, 37, 41, 47, 53, 59, 61, 67, 71, 73, 79, 83, 89, 97, 101];
 
-function* prime(i = 2, m = 100){
-	var i = (i && i > 1)? i : 2
-	  , p = [2, 3, 5, 7, 11, 13, 17, 19, 23, 29, 31, 37, 41, 47, 53, 59, 61, 67, 71, 73, 79, 83, 89, 97, 101];
-
-	// Loop generator
-	for(let j = i; j < m; j++) {
-		// Check if j is in first list of prime number
-		if(p.indexOf(j) !== -1) {
-			yield j;
-		} else {
-			let matched = false;
-			for(let ii = 0, ll = p.length; ii < ll; ii++) {
-				if(j%p[ii] === 0) {
-					matched = true;
-					break;
+		// Loop generator
+		for(let j = i; j < m; j++) {
+			// Check if j is in first list of prime number
+			if(p.indexOf(j) !== -1) {
+				yield j;
+			} else {
+				let matched = false;
+				for(let ii = 0, ll = p.length; ii < ll; ii++) {
+					if(j%p[ii] === 0) {
+						matched = true;
+						break;
+					}
+				}
+				
+				if(!matched) {
+					yield j;
 				}
 			}
-			
-			if(!matched) {
-				yield j;
+		}
+	};
+
+	let g = Array.from(new Set(prime()));
+	if(g.indexOf(2) === 0 && g.indexOf(3) === 1) {
+		console.info('Generators supported by traceur.');
+	}
+} catch(e) {
+	console.error('Generators not supported by traceur.');
+}
+
+/**
+ * @description
+ * Iterators
+ * {@link | Iterators}
+ */
+try {
+	let iter = {
+		[Symbol.iterator](){
+			let i = 0;
+
+			return {
+				next(){
+					if(i < 10) {
+						i++;
+						return {value: i, done: false};
+					} else {
+						return {done: true};
+					}
+				}
 			}
 		}
-	}
-};
+	};
 
-var g = prime();
-
-let iter = {
-	[Symbol.iterator](){
-		let i = 0;
+	let myPoodle = {type: 'dog', race: 'poodle', color: '#fff'};
+	myPoodle[Symbol.iterator] = function(){
+		let i = 0
+		  , props = Object.keys(this).filter(x => { return (typeof this[x] !== 'function')? true : false; })
+		  , that = this;
 
 		return {
 			next(){
-				if(i < 10) {
-					i++;
-					return {value: i, done: false};
+				if(i < props.length) {
+					return {value: that[props[i++]], done: false};
 				} else {
 					return {done: true};
 				}
 			}
-		}
-	}
-};
-
-for(let i of iter) {
-	console.log(i);
-}
-
-var myPoodle = {type: 'dog', race: 'poodle', color: '#fff'};
-myPoodle[Symbol.iterator] = function(){
-	let i = 0
-	  , props = Object.keys(this).filter(x => { return (typeof this[x] !== 'function')? true : false; })
-	  , that = this;
-
-	return {
-		next(){
-			if(i < props.length) {
-				return {value: that[props[i++]], done: false};
-			} else {
-				return {done: true};
-			}
-		}
+		};
 	};
-};
 
-for(let n of myPoodle) {
-	console.log(n);
-}
-
-var s = Symbol(), s1 = Symbol('foo'), s2 = Symbol('foo');
-var t = {
-	[s1]: function(){
-		console.log("Yep !");
+	let p = Array.from(new Set(iter));
+	let pSet = new Set(myPoodle);
+	if(p.length === 10 && pSet.has('poodle')) {
+		console.info('Iterators supported by traceur.');
 	}
+} catch(e) {
+	console.error('Iterators not supported by traceur.');
 }
-
-t[s1]();
-
-var t = {a: 1, b: 3};
-var {a, b} = t;
-console.log(a, b);
-
-const D = 'test';
-console.log(D);
-
-var x = y => y + 2;
-console.log(x(2));
