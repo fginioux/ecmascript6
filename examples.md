@@ -531,7 +531,7 @@ Array.from(lis).forEach(function(li){
 });
 
 // Array.find (return element find with a search function)
-console.log([1, 2, 3, 4].find((x) => { return x > 2; })); //-> 2 (first element with match with the search)
+console.log([1, 2, 3, 4].find((x) => { return x > 2; })); //-> 3 (first element with match with the search)
 
 // Array.findIndex (return element index find with a search function)
 console.log([1, 2, 3, 4].findIndex((x) => { return x > 3; })); //-> 3
