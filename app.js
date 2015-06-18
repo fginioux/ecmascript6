@@ -1,18 +1,16 @@
-var static 		= require('node-static')
-  , grunt 		= require('grunt')
-  , colors		= require('colors')
-  , staticDir 	= '.'
-  , port 		= 5001
-  , tracer 		= process.env.TRACER || 'none'
-  , gruntTask 	= process.env.TRACER || 'default';
+var staticApp     = require('node-static')
+  , grunt 		    = require('grunt')
+  , colors        = require('colors')
+  , staticDir     = '.'
+  , port          = 5001
+  , traceur       = process.env.TRACEUR || 'none'
+  , gruntTask     = process.env.TRACEUR || 'default';
 
-if(tracer){
-	staticDir = staticDir + '/' + tracer.replace('-', '/');
+if(traceur){
+	staticDir = staticDir + '/' + traceur.replace('-', '/');
 }
 
-console.log(staticDir);
-
-var file = new static.Server(staticDir);
+var file = new staticApp.Server(staticDir);
 
 // --> Run Grunt task
 grunt.tasks(gruntTask, {verbose: true});
@@ -25,6 +23,6 @@ require('http').createServer(function (request, response) {
 }).listen(port);
 
 // --> Log msg server OK 
-console.log(("Server running on " + (new String(port)).underline + " port... with tracer " + tracer.toUpperCase().underline).green);
+console.log(("Server running on " + (new String(port)).underline + " port... with traceur " + traceur.toUpperCase().underline).green);
 
 
