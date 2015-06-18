@@ -29,9 +29,9 @@ Pour les consulter, allez dans le dossier /src/apps/traceur-simple-client et ouv
 En démarrant votre application comme suit : 
 ```javascript
 TRACEUR=client-traceur-simple node app.js
-localhost:5001
-// Dans la console apparaît toutes les fonctionnalités testées...
+localhost:5001 //-> Application accessible à partir de cette url
 ```
+Vous pouvez valider via la console toutes les fonctionnalités accéssibles via traceur.
 
 ## Liste de liens ressources
 http://www.2ality.com/2015/02/using-es6-today-minsk.html<br>
