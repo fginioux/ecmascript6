@@ -1,4 +1,3 @@
-// Start app with the following command node --harmony app.js
 var Reflect = require('harmony-reflect');
 require('colors');
 
@@ -393,8 +392,13 @@ try {
 		var contains 	= 'hello'.contains('ell');
 		available.push('endsWith');
 	} catch(err) {}
+
+	try {
+		var includes 	= 'hello'.includes('ell');
+		available.push('includes');
+	} catch(err) {}
 	
-	if(startsWith || endsWith || contains) {
+	if(startsWith || endsWith || contains || includes) {
 		console.info(('»»» String new methods (' + available.join(', ') + ') supported by traceur.').green);
 	} else {
 		console.error('[x] String new methods (startsWith, endsWith, contains) not supported by traceur.'.red);

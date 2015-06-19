@@ -377,8 +377,9 @@ try {
 	let startsWith 	= 'hello'.startsWith('he');
 	let endsWith 	= 'hello'.endsWith('o');
 	let contains 	= 'hello'.contains('ell');
-	if(startsWith && endsWith && contains) {
-		console.info('String new methods (startsWith, endsWith, contains) supported by traceur.');
+	let includes	= 'hello'.includes('ell');
+	if(startsWith && endsWith && contains && includes) {
+		console.info('String new methods (startsWith, endsWith, contains, includes) supported by traceur.');
 	}
 } catch(e) {
 	console.error('String new methods (startsWith, endsWith, contains) not supported by traceur.');
