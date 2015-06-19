@@ -24,6 +24,9 @@ Pour un traceur server, démarrez le fichier d'application compilé :
 TRACEUR=server-babel node app.js
 node server/babel/app.js
 ```
+Consultez le fichier README.md dans les sources de l'app. pour avoir les infos de démarrage et de configuration.
+
+### Exemples
 Les exemples de code complétés fonctionnent tous avec le traceur traceur-simple (Google traceur-compiler). 
 Pour les consulter, allez dans le dossier /src/apps/traceur-simple-client et ouvrez le fichier app.js. Celui-ci contient à la suite tous les exemples de code fonctionnels. Les modules sont également fonctionnels et utilisés dans le fichier app.js. 
 En démarrant votre application comme suit : 
