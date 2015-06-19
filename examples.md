@@ -521,6 +521,9 @@ console.log('hello'.endsWith('o')); //-> true
 // String.contains
 console.log('hello'.contains('ll')); //-> true
 
+// String.includes
+console.log('hello'.includes('ll')); //-> true
+
 // String.repeat
 let t = 'hello'.repeat(3); 
 console.log(t); //-> hellohellohello
