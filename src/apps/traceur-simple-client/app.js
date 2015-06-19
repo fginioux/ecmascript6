@@ -284,12 +284,23 @@ try {
  * {@link https://github.com/fginioux/ecmascript6/blob/master/examples.md#proxy-concept | Proxy}
  */
 try {
-	var p = new Proxy({
+	
+	var p = new Proxy({}, {
 		get(t, p) {
-			return t[p];
+			return t[p] + 10;
+		},
+
+		set(t, p, v) {
+			console.log("podel d'access");
+			t[p] = v;
 		}
-	}, {});
-	console.info('Proxy supported by traceur.');
+	});
+
+	p.a = 10;
+	var t = p.a;
+	if(t === 20) {
+		console.info('Proxy supported by traceur.');
+	}
 } catch(e) {
 	console.error('Proxy not supported by traceur.');
 }

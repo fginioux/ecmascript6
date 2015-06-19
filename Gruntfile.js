@@ -100,7 +100,8 @@ module.exports = function(grunt) {
       },
       'traceur': {
         files: [
-          {src: './src/apps/traceur-simple-client/html/index.html', dest: './client/traceur-simple/index.html'}
+          {src: './src/apps/traceur-simple-client/html/index.html', dest: './client/traceur-simple/index.html'},
+          {src: './node_modules/harmony-reflect/reflect.js', dest: './client/traceur-simple/js/libs/reflect.js'}
         ]
       }
     }

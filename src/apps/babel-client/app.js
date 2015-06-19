@@ -35,7 +35,7 @@ Array.from(s).map(function(x){
 	console.log(x);
 });
 
-var str = "Fred Ginioux est un type impatient !";
+var str = "Fred Ginioux !";
 console.log(str.startsWith('Fred'));
 console.log(str.startsWith('Gini', 5));
 console.log(str.endsWith('!'));
