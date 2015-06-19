@@ -32,6 +32,7 @@ TRACEUR=client-traceur-simple node app.js
 localhost:5001 //-> Application accessible à partir de cette url
 ```
 Vous pouvez valider via la console toutes les fonctionnalités accéssibles via traceur.
+Les autres applications contiennent des exemples de base (mais ne sont pas exaustifs). Vous pouvez faire vos propres tests de compatibilité des différents traceurs via ces fichiers ou en ajoutant un via le gruntfile. 
 
 ## Liste de liens ressources
 http://www.2ality.com/2015/02/using-es6-today-minsk.html<br>
