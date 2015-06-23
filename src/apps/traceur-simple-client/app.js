@@ -374,12 +374,31 @@ try {
  * {@link https://github.com/fginioux/ecmascript6/blob/master/examples.md#string-new-methods | String new methods}
  */
 try {
-	let startsWith 	= 'hello'.startsWith('he');
-	let endsWith 	= 'hello'.endsWith('o');
-	let contains 	= 'hello'.contains('ell');
-	let includes	= 'hello'.includes('ell');
-	if(startsWith && endsWith && contains && includes) {
-		console.info('String new methods (startsWith, endsWith, contains, includes) supported by traceur.');
+	let available 	= [];
+	try {
+		var startsWith 	= 'hello'.startsWith('he');
+		available.push('startsWith');
+	} catch(err) {}
+
+	try {
+		var endsWith 	= 'hello'.endsWith('o');
+		available.push('endsWith');
+	} catch(err) {}
+
+	try {
+		var contains 	= 'hello'.contains('ell');
+		available.push('endsWith');
+	} catch(err) {}
+
+	try {
+		var includes 	= 'hello'.includes('ell');
+		available.push('includes');
+	} catch(err) {}
+	
+	if(startsWith || endsWith || contains || includes) {
+		console.info('String new methods (' + available.join(', ') + ') supported by traceur.');
+	} else {
+		console.error('String new methods (startsWith, endsWith, contains) not supported by traceur.');
 	}
 } catch(e) {
 	console.error('String new methods (startsWith, endsWith, contains) not supported by traceur.');
