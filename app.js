@@ -12,6 +12,8 @@ if(traceur){
 
 var file = new staticApp.Server(staticDir);
 
+console.log(gruntTask, staticDir);
+
 // --> Run Grunt task
 grunt.tasks(gruntTask, {verbose: true});
 
