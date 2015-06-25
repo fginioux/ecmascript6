@@ -291,7 +291,6 @@ try {
 		},
 
 		set(t, p, v) {
-			console.log("podel d'access");
 			t[p] = v;
 		}
 	});
