@@ -1,3 +1,9 @@
+console.log("podel !!!!!!");
+
+
+
+
+
 try {
   var staticApp     = require('node-static')
     , grunt         = require('grunt')
