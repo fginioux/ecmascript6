@@ -23,7 +23,7 @@ try {
     request.addListener('end', function () {
           file.serve(request, response);
       }).resume();
-  }).listen(port);
+  }).listen(process.env.PORT || port);
 
   // --> Log msg server OK 
   console.log(("Server running on " + (new String(port)).underline + " port... with traceur " + traceur.toUpperCase().underline).green);
