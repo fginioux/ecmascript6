@@ -309,13 +309,14 @@ console.log(`Object name == ${obj[prefix + 'name']}`); //-> Object name == poodl
 ```javascript
 var o = {
    a: 1,
+   _b: 0,
    get b(){
-   	return this.b + this.a;
+   	return this._b + this.a;
    },
    set b(value = 0){
    	if(!/^\d+$/.test(value)){
             throw Error('Invalid value for b property. It must be numeric.');
-        } else this.b = value;
+        } else this._b = value;
    }
 };
 
