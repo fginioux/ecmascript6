@@ -40,7 +40,7 @@ Les autres applications contiennent des exemples de base (mais ne sont pas exaus
 ### Application modulaire
 Une min-application modulaire est également disponible. Elle donne un exemple d'architecture possible de modules et de "components" web réutilisable en utilisant Babel et requireJs. Pour démarrer l'application :
 ```javascript
-TRACEUR=client-calculator node app ;
+TRACEUR=client-calculator node app
 ```
 
 ## Liste de liens ressources
