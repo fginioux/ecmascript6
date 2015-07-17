@@ -9,9 +9,6 @@ Pour se faire, installer l'application en local et démarrez la avec la liste po
 - TRACEUR=client-traceur-simple ;
 - TRACEUR=server-traceur-simple ;
 
-Une min-application modulaire est également disponible. Elle donne un exemple d'architecture possible de modules et de "components" web réutilisable en utilisant Babel et requireJs. Pour démarrer l'application : 
-- TRACEUR=client-calculator node app ;
-
 ```javascript
 TRACEUR=server-babel node app.js
 ```
@@ -39,6 +36,12 @@ localhost:5001 //-> Application accessible à partir de cette url
 ```
 Vous pouvez valider via la console toutes les fonctionnalités accéssibles via traceur.
 Les autres applications contiennent des exemples de base (mais ne sont pas exaustifs). Vous pouvez faire vos propres tests de compatibilité des différents traceurs via ces fichiers ou en ajoutant un via le gruntfile. 
+
+### Application modulaire
+Une min-application modulaire est également disponible. Elle donne un exemple d'architecture possible de modules et de "components" web réutilisable en utilisant Babel et requireJs. Pour démarrer l'application :
+```javascript
+TRACEUR=client-calculator node app ;
+```
 
 ## Liste de liens ressources
 http://www.2ality.com/2015/02/using-es6-today-minsk.html<br>
