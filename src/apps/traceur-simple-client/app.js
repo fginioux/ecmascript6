@@ -265,9 +265,9 @@ try {
  * Module
  * {@link https://github.com/fginioux/ecmascript6/blob/master/examples.md#modules-syntax | Module}
  */
-import {PI, sqr} 	from './modules/math.js';
-import {Human} 		from './modules/human.js';
-import {lib} 		from './modules/lib.js';
+import {PI, sqr} 	from 'modules/math.js';
+import {Human} 		from 'modules/human.js';
+import {lib} 		from 'modules/lib.js';
 
 try {
 	let me = new Human('Frederic GINIOUX');

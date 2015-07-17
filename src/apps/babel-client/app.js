@@ -1,8 +1,16 @@
+
+
+require(['js/modules/human'], function(module){
+	
+});
+
 /**
  * Module AMD (requirejs)
  * Exemple d'utilisation des modules
  */
-requirejs(['js/modules/human'], function (module) {
+require(['js/modules/human'], function (module) {
+	console.log(module);
+
 	var me = new module.Human({
 		firstname: 'Frédéric',
 		lastname: 'GINIOUX',
@@ -15,9 +23,6 @@ requirejs(['js/modules/human'], function (module) {
 		console.log(`${p} == ${me[p]}`);
 	}
 });
-
-
-
 
 
 var x = (x) => x*x;
@@ -39,7 +44,20 @@ var str = "Fred Ginioux !";
 console.log(str.startsWith('Fred'));
 console.log(str.startsWith('Gini', 5));
 console.log(str.endsWith('!'));
-console.log(str.contains('un type'));
+//console.log(str.contains('un type'));
+//
+document.addEventListener("DOMContentLoaded", function(event) { 
+	var link = document.getElementsByTagName('a');
+	link[0].addEventListener("click", function(e){
+		e.preventDefault();
+		require(['js/modules/primate'], function(module){
+			var primate = new module.Primate();
+			console.log(primate.toString());
+		});
+
+		return false;
+	});
+});
 
 
 

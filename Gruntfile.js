@@ -14,7 +14,8 @@ module.exports = function(grunt) {
           stage: 0
         },
         files: {
-          './client/babel/js/modules/human.js': ['./src/apps/babel-client/modules/human.js']
+          './client/babel/js/modules/human.js': ['./src/apps/babel-client/modules/human.js'],
+          './client/babel/js/modules/primate.js': ['./src/apps/babel-client/modules/primate.js']
         }
       },
       'client-app': {
@@ -32,6 +33,27 @@ module.exports = function(grunt) {
           './server/babel/modules/human.js': './src/apps/babel-server/modules/human.js',
           './server/babel/modules/me.js': './src/apps/babel-server/modules/me.js'
         }
+      },
+      'calculator-modules': {
+        options: {
+          modules: 'amd',
+          experimental: true,
+          stage: 0
+        },
+        files: {
+          './client/calculator/js/modules/provinces.js': './src/apps/calculator/modules/provinces.js',
+          './client/calculator/js/modules/ui.js': './src/apps/calculator/modules/ui.js',
+        }
+      },
+      'calculator-components': {
+        files: {
+          './client/calculator/js/components/calculator.js': './src/apps/calculator/components/calculator.js',
+        }
+      },
+      'calculator': {
+        files: {
+          './client/calculator/js/bootstrap.js': './src/apps/calculator/bootstrap.js',
+        }
       }
     },
     traceur: {
@@ -39,7 +61,7 @@ module.exports = function(grunt) {
           includeRuntime: true,
           traceurOptions: "--experimental",
           traceurRuntime: "./node_modules/traceur/bin/traceur-runtime.js",
-          traceurCommand: "./node_modules/traceur/src/node/command.js"
+          traceurCommand: "./node_modules/traceur/src/node/command.js",
       },
       server: {
         files: {
@@ -53,6 +75,15 @@ module.exports = function(grunt) {
       }
     },
     watch: {
+      'calculator': {
+        files:[
+          './src/apps/calculator/**/*.*'
+        ],
+        tasks:['client-calculator'],
+        options: {
+          nospawn: true
+        }
+      },
       'babel-client': {
         files:[
           './src/apps/babel-client/**/*.*'
@@ -98,10 +129,22 @@ module.exports = function(grunt) {
           {src: './src/apps/babel-client/html/index.html', dest: './client/babel/index.html'}
         ]
       },
+      'calculator': {
+        files: [
+          {src: './src/libs/requirejs.js', dest: './client/calculator/js/libs/requirejs.js'},
+          {src: './src/libs/corejs.js', dest: './client/calculator/js/libs/corejs.js'},
+          {src: './src/apps/calculator/libs/jquery.js', dest: './client/calculator/js/libs/jquery.js'},
+          {src: './src/apps/calculator/html/index.html', dest: './client/calculator/index.html'}
+        ]
+      },
       'traceur': {
         files: [
           {src: './src/apps/traceur-simple-client/html/index.html', dest: './client/traceur-simple/index.html'},
-          {src: './node_modules/harmony-reflect/reflect.js', dest: './client/traceur-simple/js/libs/reflect.js'}
+          {src: './node_modules/harmony-reflect/reflect.js', dest: './client/traceur-simple/js/libs/reflect.js'},
+          {src: './src/apps/traceur-simple-client/modules/lib.js', dest: './client/traceur-simple/js/modules/lib.js'},
+          {src: './src/apps/traceur-simple-client/modules/math.js', dest: './client/traceur-simple/js/modules/math.js'},
+          {src: './src/apps/traceur-simple-client/modules/primate.js', dest: './client/traceur-simple/js/modules/primate.js'},
+          {src: './src/apps/traceur-simple-client/modules/human.js', dest: './client/traceur-simple/js/modules/human.js'},
         ]
       }
     }
@@ -111,6 +154,7 @@ module.exports = function(grunt) {
   grunt.loadNpmTasks('grunt-contrib-watch');
   grunt.loadNpmTasks('grunt-contrib-copy');
   grunt.loadNpmTasks('grunt-traceur-simple');
+
   //Traceur-build NON (https://www.npmjs.com/package/grunt-traceur-build)
   //grunt-traceur NON (https://github.com/aaronfrost/grunt-traceur)
   
@@ -121,5 +165,9 @@ module.exports = function(grunt) {
   // --> traceur Traceur server-side
   grunt.registerTask('server-traceur-simple', ['traceur:server', 'watch:traceur-simple-server']);
   // --> traceur Traceur client-side
-  grunt.registerTask('client-traceur-simple', ['traceur:client', 'copy:traceur', 'watch:traceur-simple-client']);
+  grunt.registerTask('client-traceur-simple', ['copy:traceur', 'traceur:client', 'watch:traceur-simple-client']);
+  // --> Module transpiler
+  grunt.registerTask('client-module-transpiler', ['copy:transpiler', 'transpile']);
+  // --> App. calculator
+  grunt.registerTask('client-calculator', ['copy:calculator', 'babel:calculator-modules', 'babel:calculator-components', 'babel:calculator', 'watch:calculator']);
 };
