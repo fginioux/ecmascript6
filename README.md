@@ -9,6 +9,9 @@ Pour se faire, installer l'application en local et démarrez la avec la liste po
 - TRACEUR=client-traceur-simple ;
 - TRACEUR=server-traceur-simple ;
 
+Une min-application modulaire est également disponible. Elle donne un exemple d'architecture possible de modules et de "components" web réutilisable en utilisant Babel et requireJs. Pour démarrer l'application : 
+- TRACEUR=client-calculator node app ;
+
 ```javascript
 TRACEUR=server-babel node app.js
 ```
